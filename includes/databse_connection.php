@@ -5,7 +5,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "blogg_grupparbete";
+$db = "Blogg_Grupparbete_Felix_Kevin";
 
 
 //try och catch är för att kunna fånga errors och visa dem som meddlanden istället för att sidan kraschar totalt.
