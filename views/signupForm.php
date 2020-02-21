@@ -1,3 +1,8 @@
+<?php 
+echo(isset($_GET['err']) && $_GET['err']==true ? "<h2> Hoppsan! Något gick fel! </h2>" : "");
+echo(isset($_GET['reg']) && $_GET['reg'] == 'exists' ? "<h2> Hoppsan! Användarnamn eller epost finns redan! </h2>" : "");
+?>
+
 <h1>Register here!</h1>
 
 <form action="signup.php" method="POST">

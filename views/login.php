@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("../includes/database_connection.php");
 
 
@@ -6,25 +6,25 @@ $postUsername = $_POST['user_name'];
 //$postEmail = $_POST['user_name'];
 $postPassword = md5($_POST['password']);
 
-//DET HÄR ÄR FÖR ATT SE OM NÅGON SKRIVIT IN RÄTT DETALJER OCH KAN LOGGAS IN
-$query = "SELECT id, userName, userPassword FROM Users WHERE userName='$postUsername' AND userPassword='$postPassword'"; 
-//query returnerar datan
+
+//Checks with database if entered information is correct
+$query = "SELECT id, userName, userPassword FROM Users WHERE userName='$postUsername' AND userPassword='$postPassword'";
 $return = $dbh->query($query);
-//DET HÄR ÄR FÖR ATT HÄMTA ANVÄNDARENS DETALJER FRÅN DATABSEN
+//Fetch the users details from database
 $row = $return->fetch(PDO::FETCH_ASSOC);
 
-//OM DU INTE KAN LOGGA IN REDIRECTAS DU TILL INDEX SIDAN
-//ELSE SKRIV UTA DU KAN LOGGA IN
-if(empty($row)){
+//Failed log in returns user to index site with error message
+if (empty($row)) {
     header("location:../index.php?err=true");
-}else {
-    //Om vi skapar en session, så kan vi skapa en cookie just för den här sessionen.
-    //Försvinner när browsern stängs
+} else {
+
+    //Creates session to log in user with provided information
     session_start();
     $_SESSION['userName'] = $row['userName'];
     //$_SESSION['userName'] = $row['email'];
     $_SESSION['userPassword'] = $row['userPassword'];
 
+    //User will be logged in at index site
     header("location:../index.php");
 }
 
