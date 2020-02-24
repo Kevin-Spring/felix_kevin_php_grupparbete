@@ -27,7 +27,7 @@
     }else{ //Usage: Log in user or send them to login form with possible signup
         if(isset($_SESSION['userName']) && isset($_SESSION['userPassword'])) {
             if($_SESSION['role'] == "admin"){
-                echo "<h1>Du är admin!</h1>";
+                echo "<h1>Hurra!! Du är admin!</h1>";
                 echo "<a href='adminPage.php'>Adminpanelen</a>";
               }
             echo "<h3>Hej " .$_SESSION['userName'] ."!</h3>" . "<br> <br>";
