@@ -13,7 +13,7 @@ Id INT NOT NULL AUTO_INCREMENT,
     userName VARCHAR(25) NOT NULL,
     userPassword VARCHAR(32) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    accountCreated DATE NOT NULL,
+    accountCreated DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(5) DEFAULT 'user' NOT NULL,
     PRIMARY KEY (Id)
 );
