@@ -23,13 +23,14 @@ if(empty($createUsername) || empty($createPassword) || empty($createFirstName) |
     }
     //if it deosn't exists we push the information into the database
     else{
-        $query = "INSERT INTO Users(firstName, lastName, userName, userPassword, email) VALUES('$createFirstName', '$createLastName', '$createUsername', '$createPassword', '$createUserEmail');";
+        $query = "INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES('$createFirstName', '$createLastName', '$createUsername', '$createPassword', '$createUserEmail', 'user');";
         $return = $dbh->exec($query);
         
         //Starts a session with the registered username and password to make a direct log-in possible
         session_start();
         $_SESSION['userName'] = $createUsername;
         $_SESSION['userPassword'] = $createPassword;
+        $_SESSION['role'] = 'user';
     
         //Sends user to the index were they'll be logged in
         header("location:../index.php?reg=true");
