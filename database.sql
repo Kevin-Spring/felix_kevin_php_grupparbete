@@ -3,7 +3,7 @@ DROP TABLE Posts;
 DROP TABLE Comments;
 DROP TABLE Images;
 DROP TABLE Categories;
-DROP TABLE Admins;
+/*DROP TABLE Admins;*/
 DROP TABLE Users;
 
 Create table Users(
