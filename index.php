@@ -20,8 +20,6 @@
             if($_SESSION['role'] == "admin"){
                 echo "<h1>Du är admin!</h1>";
                 echo "<a href='adminPage.php'>Adminpanelen</a>";
-              }else {
-                echo "<h1>Du är inte admin</h1>";
               }
             echo "<h3>Hej " .$_SESSION['userName'] ."!</h3>" . "<br> <br>";
             echo '<a href="views/logout.php">Logga ut!</a>';
@@ -31,8 +29,6 @@
             if($_SESSION['role'] == "admin"){
                 echo "<h1>Du är admin!</h1>";
                 echo "<a href='adminPage.php'>Adminpanelen</a>";
-              }else {
-                echo "<h1>Du är inte admin</h1>";
               }
             echo "<h3>Hej " .$_SESSION['userName'] ."!</h3>" . "<br> <br>";
             echo '<a href="views/logout.php">Logga ut!</a>';
