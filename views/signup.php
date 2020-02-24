@@ -26,13 +26,13 @@ if(empty($createUsername) || empty($createPassword) || empty($createFirstName) |
         $query = "INSERT INTO Users(firstName, lastName, userName, userPassword, email) VALUES('$createFirstName', '$createLastName', '$createUsername', '$createPassword', '$createUserEmail');";
         $return = $dbh->exec($query);
         
-        /* //Starts a session with the registered username and password to make a direct log-in possible
+        //Starts a session with the registered username and password to make a direct log-in possible
         session_start();
         $_SESSION['userName'] = $createUsername;
         $_SESSION['userPassword'] = $createPassword;
     
         //Sends user to the index were they'll be logged in
-        header("location:../index.php?reg=true"); */
+        header("location:../index.php?reg=true");
         if(!$return){
             print_r($dbh->errorInfo());
         }
