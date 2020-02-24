@@ -1,4 +1,10 @@
-
+DROP TABLE PostImage;
+DROP TABLE Posts;
+DROP TABLE Comments;
+DROP TABLE Images;
+DROP TABLE Categories;
+DROP TABLE Admins;
+DROP TABLE Users;
 
 Create table Users(
 Id INT NOT NULL AUTO_INCREMENT,
@@ -7,16 +13,8 @@ Id INT NOT NULL AUTO_INCREMENT,
     userName VARCHAR(25) NOT NULL,
     userPassword VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
+    role VARCHAR(5) DEFAULT 'user' NOT NULL,
     PRIMARY KEY (Id)
-);
-
-Create table Admins(
-Id INT NOT NULL AUTO_INCREMENT,
-    adminFirstName VARCHAR(40) NOT NULL,
-    adminLastName VARCHAR(40) NOT NULL,
-    adminUserName VARCHAR(25) NOT NULL,
-    adminPassword VARCHAR(30) NOT NULL,
-   PRIMARY KEY(Id)
 );
 
 Create table Categories(
@@ -35,18 +33,15 @@ Id INT NOT NULL AUTO_INCREMENT,
 Create table Comments(
 Id INT NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
-    adminId INT NOT NULL,
     commentDate Date NOT NULL,
     commentContent VARCHAR(280) NOT NULL,
     PRIMARY KEY(Id),
-    FOREIGN KEY(userId) REFERENCES Users(Id),
-    FOREIGN KEY(adminId) REFERENCES Admins(Id)
+    FOREIGN KEY(userId) REFERENCES Users(Id)
 );
 
 Create table Posts(
 Id INT NOT NULL AUTO_INCREMENT,
     commentId INT NOT NULL,
-    adminId INT NOT NULL,
     imageId INT NOT NULL,
     categoryId INT NOT NULL,
     postDate DATE NOT NULL,
@@ -54,7 +49,6 @@ Id INT NOT NULL AUTO_INCREMENT,
     postContent VARCHAR(2000) NOT NULL,
     PRIMARY KEY(Id),
     FOREIGN KEY(commentId) REFERENCES Comments(Id),
-    FOREIGN KEY(adminId) REFERENCES Admins(Id),
     FOREIGN KEY(imageId) REFERENCES Images(Id),
     FOREIGN KEY(categoryId) REFERENCES Categories(Id)
 );
@@ -69,7 +63,8 @@ Id INT NOT NULL AUTO_INCREMENT,
     FOREIGN KEY(postId) REFERENCES Posts(Id)
 );
 
-INSERT INTO Admins(adminFirstName, adminLastName, adminUserName, adminPassword) VALUES("AdminFirstName", "AdminLastName", "Admin", "Admin");
+INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES("AdminFirstName", "AdminLastName", "Admin", "Admin", "admin@mail.com", "admin");
+
 
 
 
