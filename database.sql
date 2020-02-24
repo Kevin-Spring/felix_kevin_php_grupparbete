@@ -11,7 +11,7 @@ Id INT NOT NULL AUTO_INCREMENT,
 	firstName VARCHAR(40) NOT NULL,
     lastName VARCHAR(40) NOT NULL,
     userName VARCHAR(25) NOT NULL,
-    userPassword VARCHAR(30) NOT NULL,
+    userPassword VARCHAR(32) NOT NULL,
     email VARCHAR(30) NOT NULL,
     role VARCHAR(5) DEFAULT 'user' NOT NULL,
     PRIMARY KEY (Id)
@@ -63,8 +63,7 @@ Id INT NOT NULL AUTO_INCREMENT,
     FOREIGN KEY(postId) REFERENCES Posts(Id)
 );
 
-INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES("AdminFirstName", "AdminLastName", "Admin", "Admin", "admin@mail.com", "admin");
-
+INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES("Adminfirstname", "Adminlastname", "Admin", "Admin", "Admin@mail.com", "admin");
 
 
 
