@@ -1,3 +1,3 @@
-<h1>Post Something!</h1>
+<h1>About me</h1>
 
 <a href="adminPage.php">Back</a>
