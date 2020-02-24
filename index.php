@@ -19,7 +19,7 @@
         if(isset($_SESSION['userName']) && isset($_SESSION['userPassword'])) {
             if($_SESSION['role'] == "admin"){
                 echo "<h1>Du är admin!</h1>";
-                echo "<a href='adminPage.php'>Adminpanelen</a>";
+                echo "<a href='views/adminPage.php'>Adminpanelen</a>";
               }
             echo "<h3>Hej " .$_SESSION['userName'] ."!</h3>" . "<br> <br>";
             echo '<a href="views/logout.php">Logga ut!</a>';

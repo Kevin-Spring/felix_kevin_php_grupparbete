@@ -13,6 +13,7 @@ Id INT NOT NULL AUTO_INCREMENT,
     userName VARCHAR(25) NOT NULL,
     userPassword VARCHAR(32) NOT NULL,
     email VARCHAR(30) NOT NULL,
+    accountCreated DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(5) DEFAULT 'user' NOT NULL,
     PRIMARY KEY (Id)
 );
@@ -63,7 +64,7 @@ Id INT NOT NULL AUTO_INCREMENT,
     FOREIGN KEY(postId) REFERENCES Posts(Id)
 );
 
-INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES("admin", "admin", "admin", "21232f297a57a5a743894a0e4a801fc3", "admin@mail.com", "admin");
+INSERT INTO Users(firstName, lastName, userName, userPassword, email, accountCreated, role) VALUES("admin", "admin", "admin", "21232f297a57a5a743894a0e4a801fc3", "admin@mail.com","2020-02-25", "admin");
 
 
 
