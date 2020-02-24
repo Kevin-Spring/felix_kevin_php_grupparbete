@@ -17,11 +17,23 @@
     //Used to log in a newly registered user
     if(isset($_GET['reg']) && $_GET['reg']==true){
         if(isset($_SESSION['userName']) && isset($_SESSION['userPassword'])) {
+            if($_SESSION['role'] == "admin"){
+                echo "<h1>Du är admin!</h1>";
+                echo "<a href='adminPage.php'>Adminpanelen</a>";
+              }else {
+                echo "<h1>Du är inte admin</h1>";
+              }
             echo "<h3>Hej " .$_SESSION['userName'] ."!</h3>" . "<br> <br>";
             echo '<a href="views/logout.php">Logga ut!</a>';
         }
     }else{ //Usage: Log in user or send them to login form with possible signup
         if(isset($_SESSION['userName']) && isset($_SESSION['userPassword'])) {
+            if($_SESSION['role'] == "admin"){
+                echo "<h1>Du är admin!</h1>";
+                echo "<a href='adminPage.php'>Adminpanelen</a>";
+              }else {
+                echo "<h1>Du är inte admin</h1>";
+              }
             echo "<h3>Hej " .$_SESSION['userName'] ."!</h3>" . "<br> <br>";
             echo '<a href="views/logout.php">Logga ut!</a>';
         } else {
