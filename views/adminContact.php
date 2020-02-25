@@ -1,3 +1,3 @@
 <h1>Contact me</h1>
 
-<a href="adminPage.php">Back</a>
+<a href="index.php?page=adminPage">Back</a>

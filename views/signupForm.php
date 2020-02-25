@@ -5,7 +5,7 @@ echo(isset($_GET['reg']) && $_GET['reg'] == 'exists' ? "<h2> Hoppsan! Användarn
 
 <h1>Register here!</h1>
 
-<form action="signup.php" method="POST">
+<form action="handlers/signup.php" method="POST">
 <div><h3>Firstname:</h3></div>
 <div><input type="text" name="create_first_Name" id="" placeholder="Fisrtname" required> </div>
 <div><h3>Lastname:</h3></div>
@@ -22,4 +22,4 @@ echo(isset($_GET['reg']) && $_GET['reg'] == 'exists' ? "<h2> Hoppsan! Användarn
 
 <br>
 
-<a href="../index.php">Home</a>
+<a href="index.php?page=login">Home</a>

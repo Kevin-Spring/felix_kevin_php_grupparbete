@@ -15,7 +15,8 @@ $row = $return->fetch(PDO::FETCH_ASSOC);
 
 //Failed log in returns user to index site with error message
 if (empty($row)) {
-    header("location:../index.php?err=true");
+    header("location:../index.php?page=err");
+
 } else {
 
     //Creates session to log in user with provided information

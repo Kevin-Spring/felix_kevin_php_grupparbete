@@ -4,5 +4,5 @@ session_start();
 session_destroy();
 
 //send user to index site
-header("location:../index.php")
+header("location:../index.php?page=login")
 ?>

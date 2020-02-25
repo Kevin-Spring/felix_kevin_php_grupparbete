@@ -1,5 +1,5 @@
 
-<form action="views/login.php" method="POST">
+<form action="handlers/login.php" method="POST">
     <div><h3>Username</h3></div>
     <input type="text" name="user_name" placeholder="Username"> <br>
     <div><h3>Password</h3></div>
