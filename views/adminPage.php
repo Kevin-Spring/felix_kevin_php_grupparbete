@@ -1,4 +1,5 @@
 <?php 
+
     @session_start();
     if($_SESSION['role'] != "admin"){
         echo "<h2>Access denied dude, nice try..</h2>";

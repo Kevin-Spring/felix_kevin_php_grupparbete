@@ -18,6 +18,7 @@
 
     $page = (isset($_GET['page'])) ? $_GET['page'] : "";
 
+    //Options for what page to include on the index site
     if ($page == "login") {
         include("views/loginForm.php");
         echo '<a href="index.php?page=signup">Register here!</a> <br>';
@@ -37,10 +38,12 @@
         include("views/adminAbout.php");
     } elseif ($page == "adminContact"){
         include("views/adminContact.php");
+    } elseif ($page == "postsuccess") {
+        include("views/createPost.php");
     }
     else {
 
-    //Used to log in a newly registered user
+    //Log in a newly registered user
     if (isset($_GET['reg']) && $_GET['reg'] == true) {
         if (isset($_SESSION['userName']) && isset($_SESSION['userPassword'])) {
             if ($_SESSION['role'] == "admin") {
@@ -50,7 +53,7 @@
                 echo '<a href="index.php?page=logout">Sign out</a><br>';
             }
         }
-    } else { //Usage: Log in user or send them to login form with signup option
+    } else { //Log in user or send them to login form with signup option
         if (isset($_SESSION['userName']) && isset($_SESSION['userPassword'])) {
             if ($_SESSION['role'] == "admin") {
                 header("location:index.php?page=adminPage");
