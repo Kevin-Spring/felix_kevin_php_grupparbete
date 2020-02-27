@@ -33,7 +33,7 @@ if(empty($createUsername) || empty($createPassword) || empty($createFirstName) |
         $_SESSION['role'] = 'user';
     
         //Sends user to the index were they'll be logged in
-        header("location:../index.php?reg=true");
+        header("location:../index.php?page=user");
         if(!$return){
             print_r($dbh->errorInfo());
         }

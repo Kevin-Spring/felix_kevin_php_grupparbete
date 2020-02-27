@@ -1,6 +1,5 @@
 <?php
 include("includes/database_connection.php");
-include("classes/Posts.php");
 
 ?>
 
@@ -11,6 +10,12 @@ include("classes/Posts.php");
     <br>
     <textarea name="text" cols="30" rows="10" placeholder="Text"></textarea>
     <br>
+    <select name="category">
+      <option value="sunglasses">Sunglasses</option>
+      <option value="watches">Watches</option>
+      <option value="interior">Interior</option>
+    </select>
+    <br>
     <input type="file" name="file">
     <br>
     <!-- <input type="text" name="image_description"> <br> -->
@@ -19,7 +24,7 @@ include("classes/Posts.php");
 
     <?php 
 
-      if(isset($_GET['page']) && ($_GET['page'] == 'postsuccess')){
+      /* if(isset($_GET['page']) && ($_GET['page'] == 'postsuccess')){
         $posts = new Posts($dbh);
         $posts->fetchLatest();
                 //För att visa allt ur min TestPost tabell
@@ -31,7 +36,7 @@ include("classes/Posts.php");
                  echo  "<div>" . $post['content'] . "</div>";
                  
                  echo "<hr>";
-                }  
+                }   */
 
                 //Visar ur Images tabellen
                 /* foreach($posts->getPosts() as $post){
@@ -41,7 +46,7 @@ include("classes/Posts.php");
                     
                     echo "<hr>";
                    }  */
-      }
+      //}
     ?>
 
 <a href="index.php?page=adminPage">Back</a>
