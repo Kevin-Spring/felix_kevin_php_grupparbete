@@ -49,9 +49,9 @@ class singlePost{
     }
 
     public function fetchSinglePost(){
-        $getId = $_GET['id'];
+        $getPostId = $_GET['postId'];
         
-        $query = "SELECT * FROM TestPost WHERE id =" . $getId . " ;";
+        $query = "SELECT * FROM TestPost WHERE id =" . $getPostId . " ;";
         /* $sth = $this->databasehandler->prepare($query);
         $sth->bindParam(':getId', $getId); */
         $return_array = $this->databaseHandler->query($query);

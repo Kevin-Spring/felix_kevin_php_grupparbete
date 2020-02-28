@@ -24,29 +24,6 @@ include("includes/database_connection.php");
 
     <?php 
 
-      /* if(isset($_GET['page']) && ($_GET['page'] == 'postsuccess')){
-        $posts = new Posts($dbh);
-        $posts->fetchLatest();
-                //För att visa allt ur min TestPost tabell
-                 foreach($posts->getPosts() as $post){
-                 echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-                 echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-                 echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-                 echo  "<hr>";
-                 echo  "<div>" . $post['content'] . "</div>";
-                 
-                 echo "<hr>";
-                }   */
-
-                //Visar ur Images tabellen
-                /* foreach($posts->getPosts() as $post){
-                    echo  "<div>" . "<br>" . "<img src='handlers/". $post['imageLink'] . "'> " . "</div>";
-                    echo  "<hr>";
-                    echo  "<div>" . $post['imageDescription'] . "</div>";
-                    
-                    echo "<hr>";
-                   }  */
-      //}
     ?>
 
 <a href="index.php?page=adminPage">Back</a>

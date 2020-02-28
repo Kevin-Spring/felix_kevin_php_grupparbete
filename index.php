@@ -1,6 +1,8 @@
 <?php 
 include("includes/database_connection.php");
 include("classes/Posts.php");
+include("classes/Users.php");
+include("classes/Comments.php");
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +55,7 @@ include("classes/Posts.php");
         echo "<hr>";
 
         //Link to Create comment
-        echo "<a href='index.php?page=comment'>Create a comment!</a>";
+        echo "<a href='index.php?page=createComment&action=comment&postId=" . $post['id'] . "&userId=" . $_SESSION['id'] . "'>Create a comment!</a>";
        } 
 
     } elseif ($page == "logout"){
@@ -65,6 +67,8 @@ include("classes/Posts.php");
         echo "<h2> Oops something went wrong, please try again! </h2>";
         include("views/loginForm.php");
         echo '<a href="index.php?page=signup">Register here!</a> <br>';
+    } elseif ($page == "createComment"){
+        include("views/createComment.php");
     } elseif ($page == "adminPage") {
         include("views/adminPage.php");
     } elseif ($page == "adminCreatePost"){
@@ -78,25 +82,32 @@ include("classes/Posts.php");
         echo "<a href='index.php?page=adminCreatePost'>Create another post!</a>";
         echo "<br>";
         echo "<a href='index.php?page=adminPage'>Back</a>";
+
+        //Display all posts
         $posts = new Posts($dbh);
         $posts->fetchAll();
-                    //För att visa allt ur min TestPost tabell
-                     foreach($posts->getPosts() as $post){
-                     echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-                     echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-                     echo "<div>" . "<h4>" . "Category: ". $post['Category']. "<h4>". "</div>";
-                     echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-                     echo  "<hr>";
-                     echo  "<div>" . $post['content'] . "</div>";
-                     echo "<a href='handlers/editPost.php?action=edit&id=" . $post['id'] . "'>Edit post!</a>";
-                     echo "<br>";
-                     echo "<a href='handlers/deletePost.php?action=delete&id=" . $post['id'] . "'>Delete!</a>";
-                    
-                     
-                     echo "<hr>";
 
-                    }  
+    
+      foreach($posts->getPosts() as $post){
+      echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
+      echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
+      echo "<div>" . "<h4>" . "Category: ". $post['Category']. "<h4>". "</div>";
+      echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
+      echo  "<hr>";
+      echo  "<div>" . $post['content'] . "</div>";
+      echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
+      echo "<br>";
+      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "'>Delete!</a>";
+     
+      
+      echo "<hr>";
 
+     }
+
+    } elseif ($page == "edit"){
+        include("handlers/editPost.php");
+    } elseif ($page == "delete"){
+        include("handlers/deletePost.php");
     } else {
     //Displaying the loginform on the base index.php site
     include("views/loginForm.php");

@@ -8,7 +8,7 @@ $postPassword = md5($_POST['password']);
 
 
 //Checks with database if entered information is correct
-$query = "SELECT id, userName, userPassword, role FROM Users WHERE userName='$postUsername' AND userPassword='$postPassword'";
+$query = "SELECT Id, userName, userPassword, role FROM Users WHERE userName='$postUsername' AND userPassword='$postPassword'";
 $return = $dbh->query($query);
 //Fetch the users details from database
 $row = $return->fetch(PDO::FETCH_ASSOC);
@@ -25,10 +25,11 @@ if (empty($row)) {
     $_SESSION['userName'] = $row['userName'];
     //$_SESSION['userName'] = $row['email'];
     $_SESSION['userPassword'] = $row['userPassword'];
+    $_SESSION['id'] = $row['Id'];
     $_SESSION['role'] = 'user';
 
     //User will be logged in at index site
-    header("location:../index.php?page=user");
+    header("location:../index.php?page=user&userId=". $_SESSION['id']);
 } else{
     //Start Admin session
     session_start();
