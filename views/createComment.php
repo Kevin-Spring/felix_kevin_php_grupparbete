@@ -1,14 +1,8 @@
 <?php
 
+echo "<a href='index.php?page=user'>Back</a>";
+
 if(isset($_GET['action']) && $_GET['action'] == 'comment'){
-
-    //Fetch user with corresponding id
-    /* $users = new User($dbh);
-        $users->fetchUser();
-
-        foreach($users->getUser() as $user){
-        echo "<input type='hidden' name='userId' value=" . $user['Id'] . ">";
-        } */
 
     //Fetch the post with corresponding id
     $posts = new singlePost($dbh);
@@ -32,6 +26,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'comment'){
     $comments->fetchComments();
 
     foreach($comments->getComments() as $comment){
+        echo "<h3>User: " . $comment['userName'] . "</h3>";
         //echo "<input type='hidden' name='id' value=" . $post['id'] . ">";
         echo  "<div>" . "<h1>" . $comment['commentTitle'] . "</h1>" . "</div>";
         echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $comment['commentDate'] . "</h4>" . "</div>";

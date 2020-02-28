@@ -26,14 +26,21 @@ if(empty($createUsername) || empty($createPassword) || empty($createFirstName) |
         $query = "INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES('$createFirstName', '$createLastName', '$createUsername', '$createPassword', '$createUserEmail', 'user');";
         $return = $dbh->exec($query);
         
+        //To make features like create a comment work we need the Id of the registered user.
+        $query = "SELECT Id FROM Users WHERE userName='$createUsername'";
+        $return = $dbh->query($query);
+        //Fetch the users details from database
+        $row = $return->fetch(PDO::FETCH_ASSOC);
+
         //Starts a session with the registered username and password to make a direct log-in possible
         session_start();
         $_SESSION['userName'] = $createUsername;
         $_SESSION['userPassword'] = $createPassword;
+        $_SESSION['id'] = $row['Id'];
         $_SESSION['role'] = 'user';
     
         //Sends user to the index were they'll be logged in
-        header("location:../index.php?page=user");
+        header("location:../index.php?page=user&userId=" . $_SESSION['id']);
         if(!$return){
             print_r($dbh->errorInfo());
         }

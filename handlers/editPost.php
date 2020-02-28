@@ -7,11 +7,11 @@
     }
 
 $getAction = $_GET['action'];
-$getId = $_GET['postId'];
+
 
 //To edit posts
 if (isset($getAction) && $getAction == "edit") {
-
+    $getId = $_GET['postId'];
     //Fetch the post with corresponding id
     $posts = new singlePost($dbh);
     $posts->fetchSinglePost();
@@ -41,21 +41,27 @@ if (isset($getAction) && $getAction == "edit") {
         echo "<a href='index.php?page=adminPosts'>Back</a>";
     }  
 
+    $getId = $_GET['postId'];
     //Dispaly all comments related to post
     echo "<h1>Comments:</h1>";
     $comments = new Comments($dbh);
     $comments->fetchComments();
 
     foreach($comments->getComments() as $comment){
-    //echo "<input type='hidden' name='id' value=" . $post['id'] . ">";
-    
+    echo "<form action='index.php?page=deleteComment&action=deleteComment' method='POST'>";
+    echo "<input type='hidden' name='comment_post_id' value=" . $getId . ">";
+    echo "<input type='hidden' name='comment_id' value=" . $comment['id'] . ">";
+    echo "<h3>User: " . $comment['userName'] . "</h3>";
     echo  "<div>" . "<h1>" . $comment['commentTitle'] . "</h1>" . "</div>";
     echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $comment['commentDate'] . "</h4>" . "</div>";
     echo  "<hr>";
     echo  "<div>" . $comment['commentContent'] . "</div>";
     echo "<hr>";
-
+    echo  "<button type='submit'>Delete this comment</button>";
+    echo "</form>";
 }
 
 }
+
+
 ?>

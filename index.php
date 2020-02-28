@@ -108,6 +108,8 @@ include("classes/Comments.php");
         include("handlers/editPost.php");
     } elseif ($page == "delete"){
         include("handlers/deletePost.php");
+    } elseif ($page == 'deleteComment'){
+        include("handlers/deleteComment.php");
     } else {
     //Displaying the loginform on the base index.php site
     include("views/loginForm.php");
