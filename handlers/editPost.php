@@ -17,7 +17,7 @@ if (isset($getAction) && $getAction == "edit") {
     $posts->fetchSinglePost();
     //Put the old value inside new input fields to edit the text
     foreach($posts->getSinglePost() as $post){
-        echo "<form action='handleCreatePost.php?editPost=true' method='POST' enctype='multipart/form-data'>";
+        echo "<form action='handlers/handleCreatePost.php?editPost=true' method='POST' enctype='multipart/form-data'>";
         echo "<input type='hidden' name='id' value=" . $getId . ">";
         echo  "<div>" . "<input type='text' name='title' value=" . $post['title'] . "></div>"; 
         //echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
