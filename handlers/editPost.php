@@ -20,7 +20,7 @@ if (isset($getAction) && $getAction == "edit") {
         echo "<form action='handlers/handleCreatePost.php?editPost=true' method='POST' enctype='multipart/form-data'>";
         echo "<input type='hidden' name='id' value=" . $getId . ">";
         echo  "<div>" . "<input type='text' name='title' value=" . $post['title'] . "></div>"; 
-        //echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
+        //echo  "<div>" . "<h4>" . "Edited:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
         echo  "<div>" . "<br>" . "<img src=handlers/". $post['img'] . "> " . "</div>";
         echo  "<hr>";
         echo "<select name='category'>
