@@ -4,7 +4,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "Blogg_Grupparbete_Felix_Kevin";
+$db = "test_grupparbete";
 
 //MAKE CONNECTION 
 try {
