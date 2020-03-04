@@ -50,7 +50,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'comment'){
     <br>
     <textarea name="comment_text" cols="30" rows="10" placeholder="Text" required></textarea>
     <!-- CKEditor for text-options in the textarea, specifies all options wanted -->
-    <!-- <script>
+    <script>
       CKEDITOR.replace( 'comment_text', {
         toolbar: [
         { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
@@ -62,7 +62,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'comment'){
         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
         ]
         });
-    </script> -->
+    </script>
     <br>
     <button name="COMMENT">Comment!</button>
 </form>
