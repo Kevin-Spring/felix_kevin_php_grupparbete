@@ -12,6 +12,7 @@ $getAction = $_GET['action'];
 //To edit posts
 if (isset($getAction) && $getAction == "edit") {
     $getId = $_GET['postId'];
+    echo "<a href='index.php?page=delete&action=delete&postId=" . $getId . "'>Delete this post!</a>";
     //Fetch the post with corresponding id
     $posts = new singlePost($dbh);
     $posts->fetchSinglePost();

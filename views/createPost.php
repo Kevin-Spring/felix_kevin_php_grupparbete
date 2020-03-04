@@ -6,9 +6,9 @@ include("includes/database_connection.php");
 <h1>Post Something!</h1>
 
 <form action="handlers/handleCreatePost.php" method="POST" enctype="multipart/form-data">
-    <input type="text" name="title" id="" placeholder="Title"> 
+    <input type="text" name="title" id="" placeholder="Title" required> 
     <br>
-    <textarea name="text" cols="30" rows="10" placeholder="Text"></textarea>
+    <textarea name="text" cols="30" rows="10" placeholder="Text" required></textarea>
     <br>
     <select name="category">
       <option value="sunglasses">Sunglasses</option>
@@ -18,7 +18,6 @@ include("includes/database_connection.php");
     <br>
     <input type="file" name="file">
     <br>
-    <!-- <input type="text" name="image_description"> <br> -->
     <button name="POST">Post</button>
     </form>
 

@@ -4,6 +4,9 @@ include("../includes/database_connection.php");
 if(isset($_POST['COMMENT'])){
     $title = $_POST['comment_title'];
     $content = $_POST['comment_text'];
+    $title = htmlspecialchars($title);
+    //$content = htmlspecialchars($content);
+
     $userId = $_POST['user_id'];
     $postId = $_POST['post_id'];
 
@@ -29,6 +32,8 @@ if(isset($_POST['COMMENT'])){
     header("location:../index.php?page=createComment&action=comment&postId=" . $postId . "&userId=" . $_SESSION['id']);
     
 
+} else {
+    echo "Oops something went wrong! Make sure you entered all the needed info";
 }
 
 ?>

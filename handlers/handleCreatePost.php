@@ -117,8 +117,6 @@ if(isset($_POST['POST'])) {
     $title = $_POST['title'];
     $content = $_POST['text'];
     $category = $_POST['category'];
-
-    //$imageDescription = $_POST['image_description'];
     
 
     //this is to convert all file extensions to lower case
@@ -145,7 +143,6 @@ if(isset($_POST['POST'])) {
 
                 //HackerAttack Prohibition
                 $sth->bindParam(':fileDestination', $fileDestination);
-                //$sth->bindParam(':imageDescription', $imageDescription);
                 $sth->bindParam(':text', $content);
                 $sth->bindParam(':title', $title);
                 $sth->bindParam(':category', $category);
@@ -169,6 +166,8 @@ if(isset($_POST['POST'])) {
         echo "You can't upload files of this type!";
     }
 
+} else {
+    echo "Oops something went wrong! Make sure you entered all the needed info";
 }
 
 
