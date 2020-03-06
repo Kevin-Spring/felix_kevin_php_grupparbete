@@ -12,6 +12,7 @@ include("classes/Comments.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Sign Up!!</title>
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -97,7 +98,7 @@ include("classes/Comments.php");
       echo  "<div>" . $post['content'] . "</div>";
       echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
       echo "<br>";
-      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "'>Delete!</a>";
+      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
      
       
       echo "<hr>";
@@ -105,7 +106,7 @@ include("classes/Comments.php");
      }
 
     } elseif ($page == "edit"){
-        include("handlers/editPost.php");
+        include("views/editPost.php");
     } elseif ($page == "delete"){
         include("handlers/deletePost.php");
     } elseif ($page == 'deleteComment'){

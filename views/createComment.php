@@ -46,9 +46,23 @@ if(isset($_GET['action']) && $_GET['action'] == 'comment'){
     <?php echo "<input type='hidden' name='user_id' value=" . $_GET['userId'] . ">";
           echo "<input type='hidden' name='post_id' value=" . $_GET['postId'] . ">";
     ?>
-    <input type="text" name="comment_title" id="" placeholder="Title"> 
+    <input type="text" name="comment_title" id="" placeholder="Title" required> 
     <br>
-    <textarea name="comment_text" cols="30" rows="10" placeholder="Text"></textarea>
+    <textarea name="comment_text" cols="30" rows="10" placeholder="Text" required></textarea>
+    <!-- CKEditor for text-options in the textarea, specifies all options wanted -->
+    <script>
+      CKEDITOR.replace( 'comment_text', {
+        toolbar: [
+        { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+        { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+        { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+        { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+        { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+        ]
+        });
+    </script>
     <br>
     <button name="COMMENT">Comment!</button>
 </form>
