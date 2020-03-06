@@ -18,6 +18,7 @@
         //Showing all posts
         $posts = new Posts($dbh);
         $posts->fetchAll();
+        
 
         foreach($posts->getPosts() as $post){
         echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
