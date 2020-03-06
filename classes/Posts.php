@@ -4,7 +4,6 @@ class Posts{
     private $databaseHandler;
     private $order = "desc";
     private $posts;
-    //private $singlePost;
 
     public function __CONSTRUCT($dbh){
         $this->databaseHandler = $dbh;
@@ -33,9 +32,6 @@ class Posts{
     public function getPosts(){
         return $this->posts;
     }
-    /* public function getSinglePost(){
-        return $this->singlePost;
-    } */
 
 }
 
