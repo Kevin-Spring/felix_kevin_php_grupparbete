@@ -9,11 +9,11 @@
         echo "<h3>Hello " . $_SESSION['userName'] . "!</h3>" . "<br> <br>";
         echo '<a href="index.php?page=logout">Sign out</a><br>'; 
 
-        /* echo "Sort by: <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=ascending'>Ascending</a> | <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=descending'>Descending</a>";
+        echo "Sort by: <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=ascending'>Ascending</a> | <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=descending'>Descending</a>";
         
         if (isset($_GET['order']) && $_GET['order'] == "ascending") {
             $order = "asc";
-          } */
+          }
 
         //Showing all posts
         $posts = new Posts($dbh);
