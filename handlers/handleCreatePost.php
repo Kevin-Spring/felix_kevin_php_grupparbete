@@ -104,70 +104,77 @@ if(isset($_GET['editPost']) && $_GET['editPost'] == 'true'){
 
 }
 
+/* SKAPA FUNKTION SÅ DU INTE KAN SKAPA EN POST MED TOMMA FÄLT
+    !empty($_POST['POST']) 
+ */
+
 //Create Post
-if(isset($_POST['POST'])) {
+    if(isset($_POST['POST'])) {
 
-    //File Setup
-    $file = $_FILES['file'];
-    $fileName = $file['name'];
-    $fileTmpName = $file['tmp_name'];
-    $fileSize = $file['size'];
-    $fileError = $file['error'];
-    $fileType = $file['type'];
-    $title = $_POST['title'];
-    $content = $_POST['text'];
-    $category = $_POST['category'];
-    
+        if(!empty($_POST['title'] && $_POST['text'] && $_POST['category'])){
 
-    //this is to convert all file extensions to lower case
-    $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
+        //File Setup
+        $file = $_FILES['file'];
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        $fileType = $file['type'];
+        $title = $_POST['title'];
+        $content = $_POST['text'];
+        $category = $_POST['category'];
+        
 
-    //Specific converted extensions will now be allowed to be uploaded
-    $allowed = array('jpg', 'jpeg', 'png', 'pdf');
+        //this is to convert all file extensions to lower case
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
 
-    if(in_array($fileActualExt, $allowed)){
-        //if there's no errors uploading the file $fileError = 0
-        if($fileError === 0){
-            //Allow files up to the size of 1MB
-            if($fileSize < 1000000){
-                //Provide file with a new unique name so it doesn't replace duplicates in uploads folder
-                $fileNameNew = uniqid('', true).".".$fileActualExt;
-                $fileDestination = 'uploads/' . $fileNameNew;
-                //Moves the file from the temporary location to our set local folder
-                move_uploaded_file($fileTmpName, $fileDestination);
-                
-                //insert your post into database
-                $query = "INSERT INTO TestPost(title, content, img, Category) VALUES(:title, :text ,:fileDestination, :category)";
-                $sth = $dbh->prepare($query);
+        //Specific converted extensions will now be allowed to be uploaded
+        $allowed = array('jpg', 'jpeg', 'png', 'pdf');
 
-                //HackerAttack Prohibition
-                $sth->bindParam(':fileDestination', $fileDestination);
-                $sth->bindParam(':text', $content);
-                $sth->bindParam(':title', $title);
-                $sth->bindParam(':category', $category);
+        if(in_array($fileActualExt, $allowed)){
+            //if there's no errors uploading the file $fileError = 0
+            if($fileError === 0){
+                //Allow files up to the size of 1MB
+                if($fileSize < 1000000){
+                    //Provide file with a new unique name so it doesn't replace duplicates in uploads folder
+                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                    $fileDestination = 'uploads/' . $fileNameNew;
+                    //Moves the file from the temporary location to our set local folder
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                    
+                    //insert your post into database
+                    $query = "INSERT INTO TestPost(title, content, img, Category) VALUES(:title, :text ,:fileDestination, :category)";
+                    $sth = $dbh->prepare($query);
 
-                $return = $sth->execute();
+                    //HackerAttack Prohibition
+                    $sth->bindParam(':fileDestination', $fileDestination);
+                    $sth->bindParam(':text', $content);
+                    $sth->bindParam(':title', $title);
+                    $sth->bindParam(':category', $category);
 
-                //print errormessage from database
-                if (!$return) {
-                    print_r($dbh->errorInfo());
-                } 
-                
-                //After a successfull post return to index site
-                header("location:../index.php?page=adminPosts");
-            } else{
-                echo "Your file is too big!";
+                    $return = $sth->execute();
+
+                    //print errormessage from database
+                    if (!$return) {
+                        print_r($dbh->errorInfo());
+                    } 
+                    
+                    //After a successfull post return to index site
+                    header("location:../index.php?page=adminPosts");
+                } else{
+                    echo "Your file is too big!";
+                }
+            } else {
+                echo "There was an error uploading your file!";
             }
-        } else {
-            echo "There was an error uploading your file!";
+        } else{
+            echo "You can't upload files of this type!";
         }
-    } else{
-        echo "You can't upload files of this type!";
-    }
 
-} else {
+    }  else {
     echo "Oops something went wrong! Make sure you entered all the needed info";
+    }
 }
 
 

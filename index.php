@@ -106,7 +106,7 @@ include("classes/Comments.php");
      }
 
     } elseif ($page == "edit"){
-        include("handlers/editPost.php");
+        include("views/editPost.php");
     } elseif ($page == "delete"){
         include("handlers/deletePost.php");
     } elseif ($page == 'deleteComment'){

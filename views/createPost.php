@@ -29,6 +29,7 @@ include("includes/database_connection.php");
       <option value="interior">Interior</option>
     </select>
     <br>
+    <!-- USER NEEDS TO UPLOAD FILE, ERROR MESSAGE OTHERWISE -->
     <input type="file" name="file">
     <br>
     <button name="POST">Post</button>
