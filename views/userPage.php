@@ -20,6 +20,7 @@
  //In order for the url to stay the same with user-info, we need to direct user to new file
  //Otherwise the get method overwrites all url info
  echo "<form method='GET' action='handlers/handleSearch.php'>";
+ echo "<input type='hidden' name='userId' value=" . $_SESSION['id'] . ">";
   echo  "<input type='search' name='search_query'>";
   echo  "<input type='submit' value='SÖK!'>";
  echo "</form>";
@@ -45,9 +46,6 @@ if (isset($_GET['search_query'])) {
     }
 
 }
-
-
- 
  
  //If order = ascedning in URL fetchAll posts with argument "asc", which changes the query in class Posts
 if (isset($_GET['order']) && $_GET['order'] == "ascending") {
@@ -129,7 +127,8 @@ elseif(isset($_GET['order']) && $_GET['order'] == "interior"){
       //Link to Create comment
       echo "<a href='index.php?page=createComment&action=comment&postId=" . $post['id'] . "&userId=" . $_SESSION['id'] . "'>Create a comment!</a>";
       }
-    } elseif(isset($_GET['order']) && $_GET['order'] == "descending"){
+    } 
+elseif(isset($_GET['order']) && $_GET['order'] == "descending"){
       //Showing all posts with order descending
       $posts = new Posts($dbh);
       $posts->fetchAll("desc");
