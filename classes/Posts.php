@@ -2,7 +2,6 @@
 
 class Posts{
     private $databaseHandler;
-    private $order = "desc";
     private $posts;
 
     public function __CONSTRUCT($dbh){
@@ -10,8 +9,17 @@ class Posts{
     }
 
     //Fetch all the posts
-    public function fetchAll(){
-        $query = "SELECT * FROM TestPost ORDER BY date_posted $this->order";
+    public function fetchAll($order){
+        $query = "SELECT * FROM TestPost ORDER BY date_posted $order";
+
+        $return_array = $this->databaseHandler->query($query);
+        $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->posts = $return_array;
+    }
+    // Function to fetch posts by Category
+    public function fetchCategory($order){
+        $query = "SELECT * FROM TestPost WHERE Category LIKE $order";
 
         $return_array = $this->databaseHandler->query($query);
         $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
@@ -48,8 +56,6 @@ class singlePost{
         $getPostId = $_GET['postId'];
         
         $query = "SELECT * FROM TestPost WHERE id =" . $getPostId . " ;";
-        /* $sth = $this->databasehandler->prepare($query);
-        $sth->bindParam(':getId', $getId); */
         $return_array = $this->databaseHandler->query($query);
         $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
 
