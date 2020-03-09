@@ -18,6 +18,15 @@ class Posts{
         $this->posts = $return_array;
     }
 
+    public function fetchCategory($order){
+        $query = "SELECT * FROM TestPost WHERE Category LIKE $order";
+
+        $return_array = $this->databaseHandler->query($query);
+        $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->posts = $return_array;
+    }
+
     //Fetch the latest post
     /* public function fetchLatest(){
         $query = "SELECT * FROM TestPost ORDER BY date_posted $this->order LIMIT 1";
