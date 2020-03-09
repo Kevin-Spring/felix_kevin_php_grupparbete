@@ -40,7 +40,7 @@ if (isset($_GET['order']) && $_GET['order'] == "ascending") {
 
   } 
 elseif(isset($_GET['order']) && $_GET['order'] == "sunglasses"){
-  //Showing all posts with order descending
+  //Order posts by Category
   $posts = new Posts($dbh);
   $posts->fetchCategory("'sunglasses'");
  
@@ -60,7 +60,7 @@ elseif(isset($_GET['order']) && $_GET['order'] == "sunglasses"){
     }
   } 
 elseif(isset($_GET['order']) && $_GET['order'] == "watches"){
-  //Showing all posts with order descending
+  //Order posts by Category
   $posts = new Posts($dbh);
   $posts->fetchCategory("'watches'");
    
@@ -80,7 +80,7 @@ elseif(isset($_GET['order']) && $_GET['order'] == "watches"){
     }
   } 
 elseif(isset($_GET['order']) && $_GET['order'] == "interior"){
-    //Showing all posts with order descending
+    //Order posts by Category
     $posts = new Posts($dbh);
     $posts->fetchCategory("'interior'");
      
