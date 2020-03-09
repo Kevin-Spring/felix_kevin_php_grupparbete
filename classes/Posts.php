@@ -26,6 +26,20 @@ class Posts{
 
         $this->posts = $return_array;
     }
+    // Function to fetch posts searched by user
+    public function fetchSearch(){
+        $searchQuery = $_GET['search_query'];
+        $query = "SELECT * FROM TestPost WHERE title LIKE :searchQuery OR content LIKE :searchQuery";
+
+        $sth = $this->databaseHandler->prepare($query);
+        $queryParam = '%' . $searchQuery . '%';
+        $sth->bindParam(':searchQuery', $queryParam);
+
+        $return_array = $sth->execute();
+
+        $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
+        $this->posts = $return_array;
+    }
 
     //Fetch the latest post
     /* public function fetchLatest(){
