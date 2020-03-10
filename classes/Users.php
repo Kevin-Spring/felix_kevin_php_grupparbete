@@ -15,8 +15,7 @@ public function fetchUser(){
     $query = "SELECT Id FROM Users WHERE Id = :getId";
 
     $sth = $this->databaseHandler->prepare($query);
-    $queryParam = '%' . $getUserId . '%';
-    $sth->bindParam(':getId', $queryParam);
+    $sth->bindParam(':getId', $getUserId );
     $return_array = $sth->execute();
     $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
     $this->user = $return_array;

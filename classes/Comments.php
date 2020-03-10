@@ -1,7 +1,6 @@
 <?php 
     class Comments{
     private $databaseHandler;
-    private $order = "desc";
     private $comments;
     //private $singlePost;
 
@@ -12,10 +11,12 @@
     //Fetch all the posts
     public function fetchComments(){
         $getPostId = $_GET['postId'];
-        $query = "SELECT * FROM TestComments JOIN Users ON Users.Id = userId WHERE postId =" . $getPostId;
+        $query = "SELECT * FROM TestComments JOIN Users ON Users.Id = userId WHERE postId =:getPostId";
 
-        $return_array = $this->databaseHandler->query($query);
-        $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
+        $sth = $this->databaseHandler->prepare($query);
+        $sth->bindParam(':getPostId', $getPostId);
+        $return_array = $sth->execute();
+        $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
 
         $this->comments = $return_array;
     }
