@@ -72,15 +72,11 @@ class singlePost{
         $getPostId = $_GET['postId'];
         
         $query = "SELECT id, title, content, img, date_posted, Category FROM TestPost WHERE id = :getPostId";
-        //$query = "SELECT id, title, content, img, date_posted, Category FROM TestPost WHERE id =" . $getPostId;
 
         $sth = $this->databaseHandler->prepare($query);
         $sth->bindParam(':getPostId', $getPostId);
         $return_array = $sth->execute();
         $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
-
-        /* $return_array = $this->databaseHandler->query($query);
-        $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC); */
 
         $this->singlePost = $return_array;
 
