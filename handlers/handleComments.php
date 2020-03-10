@@ -1,9 +1,6 @@
 <?php
 include("../includes/database_connection.php");
 session_start();
-/* SKAPA FUNKTION SÅ DU INTE KAN SKAPA EN Kommentar MED TOMMA FÄLT
-    !empty($_POST['POST']) 
- */
 
     if(isset($_POST['COMMENT'])){
 
