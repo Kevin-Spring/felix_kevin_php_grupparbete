@@ -15,8 +15,6 @@ session_start();
 
         $query = "INSERT INTO TestComments(userId, postId, commentContent, commentTitle) VALUES( :userID , :postID , :content , :title )";
         
-        print_r($_POST);
-        echo $query;
         $sth = $dbh->prepare($query);
 
         //HackerAttack Prohibition
