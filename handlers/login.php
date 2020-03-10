@@ -8,11 +8,14 @@ $postPassword = md5($_POST['password']);
 
 
 //Checks with database if entered information is correct
-$query = "SELECT Id, userName, userPassword, role FROM Users WHERE userName='$postUsername' AND userPassword='$postPassword'";
-$return = $dbh->query($query);
-//Fetch the users details from database
-$row = $return->fetch(PDO::FETCH_ASSOC);
+$query = "SELECT Id, userName, userPassword, role FROM Users WHERE userName= :postUsername AND userPassword= :postPassword";
 
+$sth = $dbh->prepare($query);
+$sth->bindParam(':postUsername', $postUsername);
+$sth->bindParam(':postPassword', $postPassword);
+$row = $sth->execute();
+//Fetch the users details from database
+$row = $sth ->fetch(PDO::FETCH_ASSOC);
 
 //Failed log in returns user to index site with error message
 if (empty($row)) {
@@ -43,4 +46,3 @@ if (empty($row)) {
 }
 
 ?>
-<!-- OR email='$postEmail'    -->
