@@ -37,6 +37,8 @@ class Posts{
 
         $return_array = $sth->execute();
 
+        echo "<h2><marquee direction='right'><img src='https://i.stack.imgur.com/JaxsA.gif'>Search result!</marquee></h2> We found " . $sth->rowCount() . " posts with the word $searchQuery! <hr />";
+
         $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
         $this->posts = $return_array;
     }
