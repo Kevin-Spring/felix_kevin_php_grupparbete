@@ -28,7 +28,7 @@ include("includes/footer.php");
 
         include("includes/navbar.php");
         include("views/userPage.php");
-        
+
     } elseif ($page == "logout"){
         header("location:handlers/logout.php");
     } elseif ($page == "signup"){
@@ -44,11 +44,20 @@ include("includes/footer.php");
         include("views/adminPage.php");
     } elseif ($page == "adminCreatePost"){
         include("views/createPost.php");
-    } elseif ($page == "adminAbout"){
+    } elseif ($page == "adminAbout" && $_SESSION['role'] == 'user'){
+        include("includes/navbar.php");
         include("views/adminAbout.php");
-    } elseif ($page == "adminContact"){
+    } elseif ($page == "adminContact" && $_SESSION['role'] == 'user'){
+        include("includes/navbar.php");
         include("views/adminContact.php");
-    } elseif ($page == "adminPosts") {
+    } elseif ($page == "adminAbout" && $_SESSION['role'] == 'admin'){
+        echo "<a href='index.php?page=adminPage'>Back</a>";
+        include("views/adminAbout.php");
+    } elseif ($page == "adminContact" && $_SESSION['role'] == 'admin'){
+        echo "<a href='index.php?page=adminPage'>Back</a>";
+        include("views/adminContact.php");
+    }
+    elseif ($page == "adminPosts") {
         include("views/adminPosts.php");
     } elseif ($page == "edit"){
         include("views/editPost.php");
