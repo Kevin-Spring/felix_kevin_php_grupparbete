@@ -2,21 +2,44 @@
 
 class Posts{
     private $databaseHandler;
-    private $order = "desc";
     private $posts;
-    //private $singlePost;
 
     public function __CONSTRUCT($dbh){
         $this->databaseHandler = $dbh;
     }
 
     //Fetch all the posts
-    public function fetchAll(){
-        $query = "SELECT * FROM TestPost ORDER BY date_posted $this->order";
+    public function fetchAll($order){
+        $query = "SELECT * FROM TestPost ORDER BY date_posted $order";
 
         $return_array = $this->databaseHandler->query($query);
         $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
 
+        $this->posts = $return_array;
+    }
+    // Function to fetch posts by Category
+    public function fetchCategory($order){
+        $query = "SELECT * FROM TestPost WHERE Category LIKE $order";
+
+        $return_array = $this->databaseHandler->query($query);
+        $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
+
+        $this->posts = $return_array;
+    }
+    // Function to fetch posts searched by user
+    public function fetchSearch(){
+        $searchQuery = $_GET['search_query'];
+        $query = "SELECT * FROM TestPost WHERE title LIKE :searchQuery OR content LIKE :searchQuery";
+
+        $sth = $this->databaseHandler->prepare($query);
+        $queryParam = '%' . $searchQuery . '%';
+        $sth->bindParam(':searchQuery', $queryParam);
+
+        $return_array = $sth->execute();
+
+        echo "<h2><marquee direction='right'><img src='https://i.stack.imgur.com/JaxsA.gif'>Search result!</marquee></h2> We found " . $sth->rowCount() . " posts with the word $searchQuery! <hr />";
+
+        $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
         $this->posts = $return_array;
     }
 
@@ -33,9 +56,6 @@ class Posts{
     public function getPosts(){
         return $this->posts;
     }
-    /* public function getSinglePost(){
-        return $this->singlePost;
-    } */
 
 }
 
@@ -51,11 +71,12 @@ class singlePost{
     public function fetchSinglePost(){
         $getPostId = $_GET['postId'];
         
-        $query = "SELECT * FROM TestPost WHERE id =" . $getPostId . " ;";
-        /* $sth = $this->databasehandler->prepare($query);
-        $sth->bindParam(':getId', $getId); */
-        $return_array = $this->databaseHandler->query($query);
-        $return_array = $return_array ->fetchAll(PDO::FETCH_ASSOC);
+        $query = "SELECT id, title, content, img, date_posted, Category FROM TestPost WHERE id = :getPostId";
+
+        $sth = $this->databaseHandler->prepare($query);
+        $sth->bindParam(':getPostId', $getPostId);
+        $return_array = $sth->execute();
+        $return_array = $sth ->fetchAll(PDO::FETCH_ASSOC);
 
         $this->singlePost = $return_array;
 

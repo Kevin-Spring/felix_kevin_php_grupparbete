@@ -21,7 +21,22 @@ echo(isset($_GET['reg']) && $_GET['reg'] == 'exists' ? "<h2> Hoppsan! Användarn
 
 <div class="login-container">
 <form action="handlers/signup.php" method="POST">
+
 <h2 class="lg-heading">REGISTER</h2>
+
+<div><h3>Firstname:</h3></div>
+<div><input type="text" name="create_first_Name" id="" placeholder="Fisrtname" required> </div>
+<div><h3>Lastname:</h3></div>
+<div><input type="text" name="create_last_Name" id="" placeholder="Lastname" required> </div>
+    <div><h3>Username:</h3></div>
+    <div><input type="text" name="create_user_name" id="" placeholder="Username" required> </div>
+    <div><h3>Password:</h3></div>
+    <div><input type="password" name="create_password" id="" placeholder="Password" minlength="6" required> </div>
+    <div><h3>Email:</h3></div>
+    <div><input type="email" name="create_user_Email" id="" placeholder="Email" required> </div>
+    <br>
+    <input type="submit" value="SIGN UP!!"> <br>
+</form>
 
     <div class="login-input"><i class="fas fa-user"></i><input type="text" name="create_first_Name" id="" placeholder="Fisrtname" required> </div>
     <div class="login-input"><i class="fas fa-user"></i><input type="text" name="create_last_Name" id="" placeholder="Lastname" required> </div>

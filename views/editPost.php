@@ -12,6 +12,7 @@ $getAction = $_GET['action'];
 //To edit posts
 if (isset($getAction) && $getAction == "edit") {
     $getId = $_GET['postId'];
+    echo "<a href='index.php?page=delete&action=delete&postId=" . $getId . "'>Delete this post!</a>";
     //Fetch the post with corresponding id
     $posts = new singlePost($dbh);
     $posts->fetchSinglePost();
@@ -30,9 +31,23 @@ if (isset($getAction) && $getAction == "edit") {
                 <option value='interior'>Interior</option>
              </select>";
         echo "<br>";
-        echo '<input type="file" name="file">';
+        /* USER NEEDS TO UPLOAD FILE, ERROR MESSAGE OTHERWISE */
+        echo 'Required <input type="file" name="file"> ';
+        echo "<br>";
         echo  "<div>" . "<textarea name='text' cols=30 rows=10>" . $post['content'] . "</textarea>" . "</div>";
-              
+       echo "<script>
+        CKEDITOR.replace( 'text', {
+          toolbar: [
+          { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
+          { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+          { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+          { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+          { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+          { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+          { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+          ]
+          });
+      </script>";
         echo "<hr>";
 
         echo "<button name='update'>Update!</button>";
@@ -62,6 +77,3 @@ if (isset($getAction) && $getAction == "edit") {
 }
 
 }
-
-
-?>

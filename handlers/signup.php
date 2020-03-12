@@ -12,10 +12,14 @@ if(empty($createUsername) || empty($createPassword) || empty($createFirstName) |
     header("location:signupForm.php?err=true");
 }else if(!empty($createUserName) || !empty($createUserEmail)){
     //Query to see if username or mail already exists
-    $query = "SELECT * FROM Users WHERE userName='$createUsername' OR email='$createUserEmail'";
-    $return = $dbh->query($query);
-    //database response to query
-    $row = $return->fetch(PDO::FETCH_ASSOC);
+    $query = "SELECT * FROM Users WHERE userName=:createUsername OR email=:createUserEmail";
+
+    $sth = $dbh->prepare($query);
+    $sth->bindParam(':createUsername', $createUsername);
+    $sth->bindParam(':createUserEmail', $createUserEmail);
+    $row = $sth->execute();
+    //Fetch the users details from database
+    $row = $sth ->fetch(PDO::FETCH_ASSOC);
 
     //if the response is true it means username or email already exists
     if($row == true){
@@ -23,14 +27,24 @@ if(empty($createUsername) || empty($createPassword) || empty($createFirstName) |
     }
     //if it deosn't exists we push the information into the database
     else{
-        $query = "INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES('$createFirstName', '$createLastName', '$createUsername', '$createPassword', '$createUserEmail', 'user');";
-        $return = $dbh->exec($query);
+        $query = "INSERT INTO Users(firstName, lastName, userName, userPassword, email, role) VALUES(:createFirstName, :createLastName, :createUsername, :createPassword, :createUserEmail, 'user');";
+        $sth = $dbh->prepare($query);
+        $sth->bindParam(':createFirstName', $createFirstName);
+        $sth->bindParam(':createLastName', $createLastName);
+        $sth->bindParam(':createUsername', $createUsername);
+        $sth->bindParam(':createPassword', $createPassword);
+        $sth->bindParam(':createUserEmail', $createUserEmail);
+        
+        $row = $sth->execute();
         
         //To make features like create a comment work we need the Id of the registered user.
-        $query = "SELECT Id FROM Users WHERE userName='$createUsername'";
-        $return = $dbh->query($query);
+        $query = "SELECT Id FROM Users WHERE userName= :createUsername";
+
+        $sth = $dbh->prepare($query);
+        $sth->bindParam(':createUsername', $createUsername);
+        $row = $sth->execute();
         //Fetch the users details from database
-        $row = $return->fetch(PDO::FETCH_ASSOC);
+        $row = $sth ->fetch(PDO::FETCH_ASSOC);
 
         //Starts a session with the registered username and password to make a direct log-in possible
         session_start();

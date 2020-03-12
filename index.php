@@ -12,6 +12,7 @@ include("classes/Comments.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Sign Up!!</title>
+
     <link rel="stylesheet" href="css\style.css">
      <!-- link for icons -->
      <link
@@ -20,6 +21,9 @@ include("classes/Comments.php");
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
 </head>
 
 <body>
@@ -35,11 +39,13 @@ include("classes/Comments.php");
 
     $page = (isset($_GET['page'])) ? $_GET['page'] : "";
 
+
     //Options for what page to include on the index site
     if ($page == "login") {
         include("views/loginForm.php");
         echo '<a href="index.php?page=signup">Register here!</a> <br>';
     } elseif ($page == "user"){
+
 
         //Prevent people from entering site without login
         if(@$_SESSION['role'] != "user"){
@@ -80,6 +86,9 @@ include("classes/Comments.php");
         echo '</div>';
        } 
 
+
+        include("views/userPage.php");
+
     } elseif ($page == "logout"){
         header("location:handlers/logout.php");
     } elseif ($page == "signup"){
@@ -100,34 +109,9 @@ include("classes/Comments.php");
     } elseif ($page == "adminContact"){
         include("views/adminContact.php");
     } elseif ($page == "adminPosts") {
-        echo "<h1>Your posts!</h1>";
-        echo "<a href='index.php?page=adminCreatePost'>Create another post!</a>";
-        echo "<br>";
-        echo "<a href='index.php?page=adminPage'>Back</a>";
-
-        //Display all posts
-        $posts = new Posts($dbh);
-        $posts->fetchAll();
-
-    
-      foreach($posts->getPosts() as $post){
-      echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-      echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-      echo "<div>" . "<h4>" . "Category: ". $post['Category']. "<h4>". "</div>";
-      echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-      echo  "<hr>";
-      echo  "<div>" . $post['content'] . "</div>";
-      echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
-      echo "<br>";
-      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "'>Delete!</a>";
-     
-      
-      echo "<hr>";
-
-     }
-
+        include("views/adminPosts.php");
     } elseif ($page == "edit"){
-        include("handlers/editPost.php");
+        include("views/editPost.php");
     } elseif ($page == "delete"){
         include("handlers/deletePost.php");
     } elseif ($page == 'deleteComment'){
