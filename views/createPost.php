@@ -17,9 +17,8 @@ include("includes/database_connection.php");
     </select>
     <br>
     <h3>Blog Image</h3>
-    <!-- <input type="file" name="file"> -->
 
-    <input type="file" name="file" accept="image/*" onchange="loadFile(event)">
+    <input type="file" name="file" accept="image/*" onchange="loadFile(event)" required>
     <img id="output"/>
 
     <!-- SCRIPT FOR PREVIEW WINDOW OF UPLOADED IMAGE -->
