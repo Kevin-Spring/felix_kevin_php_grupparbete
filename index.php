@@ -73,7 +73,7 @@ include("classes/Comments.php");
 
         //Showing all posts
         $posts = new Posts($dbh);
-        $posts->fetchAll();
+        $posts->fetchAll("desc");
 
         foreach($posts->getPosts() as $post){
         echo  '<div class="post-container">';
