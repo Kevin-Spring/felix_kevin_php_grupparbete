@@ -28,6 +28,7 @@ include("classes/Comments.php");
 
 <body>
 
+<h1>HEJ</h1>
 
     <?php
 
