@@ -17,7 +17,19 @@ include("includes/database_connection.php");
     </select>
     <br>
     <h3>Blog Image</h3>
-    <input type="file" name="file">
+    <!-- <input type="file" name="file"> -->
+
+    <input type="file" name="file" accept="image/*" onchange="loadFile(event)">
+    <img id="output"/>
+
+    <!-- SCRIPT FOR PREVIEW WINDOW OF UPLOADED IMAGE -->
+    <script>
+    var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    };
+    </script>
+
     <br>
     <h3>Blog Title</h3>
     <input type="text" name="title" id="" placeholder="Title"> 
