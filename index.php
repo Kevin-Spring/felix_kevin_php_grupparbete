@@ -42,7 +42,7 @@ include("classes/Comments.php");
     //Options for what page to include on the index site
     if ($page == "login") {
         include("views/loginForm.php");
-        echo '<a href="index.php?page=signup">Register here!</a> <br>';
+        echo '<a href="index.php?page=signup" id="register">Register here!</a> <br>';
     } elseif ($page == "user"){
 
         include("views/userPage.php");
@@ -77,7 +77,7 @@ include("classes/Comments.php");
     } else {
     //Displaying the loginform on the base index.php site
     include("views/loginForm.php");
-    echo '<a href="index.php?page=signup">Register here!</a> <br>';
+    echo '<a href="index.php?page=signup" id="register">Register here!</a> <br>';
     } 
 
     ?>
