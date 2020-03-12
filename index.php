@@ -45,49 +45,8 @@ include("classes/Comments.php");
         echo '<a href="index.php?page=signup">Register here!</a> <br>';
     } elseif ($page == "user"){
 
-
-        //Prevent people from entering site without login
-        if(@$_SESSION['role'] != "user"){
-        echo "<h2>Access denied dude, nice try..</h2>";
-        die;
-        }
-
-        // Navbar
-        echo "<nav>\n";
-        echo "<ul>\n";
-        echo "  <li><a class=\"active\" href=\"#home\">Home</a></li>\n";
-        echo "  <li><a href=\"#news\">About</a></li>\n";
-        echo "  <li><a href=\"#contact\">Contact</a></li>\n";
-        echo "</ul>\n";
-        echo'<div class="btn-signOut">' . '<i class="fas fa-sign-out-alt">' . '</i>' . '<a href="index.php?page=logout">Sign out</a>' . '</div>' . '</nav>'; 
-        echo "</nav>\n";
-
-        // Header + Greeting User
-        echo "<header> \n";
-        echo "    <h1>Welcome " . $_SESSION['userName'] . " to Millhouse Blog</h1>\n";
-        echo "    <h2> Sunglasses Interior & Watches</h2>\n";
-        echo "</header>\n";
-        
-
-        //Showing all posts
-        $posts = new Posts($dbh);
-        $posts->fetchAll("desc");
-
-        foreach($posts->getPosts() as $post){
-        echo  '<div class="post-container">';
-        echo  '<div class="post-img">' . '<img src="handlers/'. $post['img'] . '"> ' . '</div>';
-        echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
-        echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
-        echo  '<div class="post-content">' . $post['content'] . '</div>';
-
-        //Link to Create comment
-        echo "<a href='index.php?page=createComment&action=comment&postId=" . $post['id'] . "&userId=" . $_SESSION['id'] . "'>Read more!</a>";
-        echo '</div>';
-       } 
-
-
         include("views/userPage.php");
-
+        
     } elseif ($page == "logout"){
         header("location:handlers/logout.php");
     } elseif ($page == "signup"){
