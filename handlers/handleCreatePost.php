@@ -104,10 +104,6 @@ if(isset($_GET['editPost']) && $_GET['editPost'] == 'true'){
 
 }
 
-/* SKAPA FUNKTION SÅ DU INTE KAN SKAPA EN POST MED TOMMA FÄLT
-    !empty($_POST['POST']) 
- */
-
 //Create Post
     if(isset($_POST['POST'])) {
 
