@@ -3,28 +3,9 @@ include("includes/database_connection.php");
 include("classes/Posts.php");
 include("classes/Users.php");
 include("classes/Comments.php");
+include("includes/header.php");
+include("includes/footer.php");
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Sign Up!!</title>
-
-    <link rel="stylesheet" href="css\style.css">
-     <!-- link for icons -->
-     <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-
-</head>
 
 <body>
 
@@ -45,6 +26,7 @@ include("classes/Comments.php");
         echo '<a href="index.php?page=signup" id="register">Register here!</a> <br>';
     } elseif ($page == "user"){
 
+        include("includes/navbar.php");
         include("views/userPage.php");
         
     } elseif ($page == "logout"){
@@ -84,28 +66,5 @@ include("classes/Comments.php");
 
 
 <button class="btn-top" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-<script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script>
-
-</body>
-
-</html>
