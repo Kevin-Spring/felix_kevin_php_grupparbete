@@ -1,0 +1,17 @@
+// header, hamburger menu
+header {
+  width: 100%;
+  background: $color-dark;
+  padding-top: 10%;
+  padding-bottom: 5%;
+  text-align: center;
+
+  h1 {
+    color: $color-light;
+    font-size: 3rem;
+  }
+
+  h2 {
+    color: $color-yellow;
+  }
+}

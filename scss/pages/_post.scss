@@ -1,0 +1,113 @@
+.lg-post-container {
+  z-index: 1;
+  border-radius: 8px;
+  color: $color-dark;
+  background: rgba(255, 255, 255, 0.966);
+  margin: 5% 10% 0% 10%;
+  padding: 5% 10% 10% 10%;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.35);
+
+  img {
+    width: 100%;
+    height: auto;
+    border: 10px solid $color-light;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 3rem;
+    color: $color-grey;
+    font-weight: 1000;
+    margin-bottom: 1%;
+  }
+  h3 {
+    color: $color-red;
+    span {
+      color: $color-grey;
+      font-weight: 1000;
+    }
+  }
+
+  h4 {
+    color: $color-red;
+    span {
+      color: $color-grey;
+      font-weight: 1000;
+    }
+  }
+}
+
+// Comments
+.comments-container {
+  z-index: 100;
+  color: $color-light;
+  background: $color-dark;
+  //border-radius: 8px;
+
+  margin: 0% 12% 5% 12%;
+  padding: 5% 10% 5% 5%;
+
+  .create-comment-container {
+    margin-bottom: 10%;
+
+    input,
+    textarea {
+      background: none;
+      margin-bottom: 2%;
+      padding: 2% 0% 1% 0%;
+      width: 50%;
+      border: none;
+      border-bottom: 4px solid $color-red;
+      height: 8vh;
+
+      font-size: 1.5rem;
+      color: $color-light;
+
+      &:focus {
+        outline: none;
+        background-color: $color-light;
+        color: $color-dark;
+        padding-left: 2%;
+      }
+    }
+
+    textarea {
+      // textarea limits
+      height: 7vh;
+      min-height: 7vh;
+      max-height: 40vh;
+      max-width: 50%;
+      min-width: 50%;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 4%;
+    color: $color-yellow;
+  }
+
+  h3 {
+    color: $color-red;
+    font-size: 1.5rem;
+
+    span {
+      color: rgba(128, 128, 128, 0.589);
+      margin-left: 1%;
+      font-size: 1rem;
+    }
+  }
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+  .user-comment-container {
+    box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.062);
+    padding: 2% 10% 2% 2%;
+    margin-bottom: 4%;
+  }
+}

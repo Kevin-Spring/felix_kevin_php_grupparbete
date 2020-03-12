@@ -1,0 +1,103 @@
+// buttons Styles
+.btn {
+  width: 100%;
+  display: block;
+  padding: 4% 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  background: $color-red;
+  color: white;
+  text-align: center;
+  @include easeIn;
+
+  &:hover {
+    cursor: pointer;
+    background: $color-dark;
+    color: set-text-color($color-black);
+  }
+}
+
+.btn-dark {
+  @extend .btn;
+  color: $color-light;
+  background: $color-dark;
+
+  &:hover {
+    background: $color-red;
+  }
+}
+
+.btn-signOut {
+  width: 100%;
+  background: $color-red;
+  padding: 1.5% 1.5% 1.5% 1.5%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+
+  a {
+    color: $color-dark;
+  }
+
+  // Icon
+  i {
+    color: $color-dark;
+    font-size: 1.5rem;
+    margin-right: 2%;
+    padding-top: 2%;
+  }
+
+  // Grid
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.btn-comment {
+  width: 50%;
+  display: block;
+  padding: 1.5% 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  background: $color-red;
+  color: white;
+  @include easeIn;
+
+  &:hover {
+    cursor: pointer;
+    background: $color-light;
+    color: $color-red;
+  }
+}
+
+.btn-top {
+  margin: 5% 40% 2% 40%;
+  width: 20rem;
+  padding: 1%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 8px;
+  background: $color-dark;
+  color: $color-light;
+  cursor: pointer;
+  border: none;
+  @include easeIn;
+
+  &:hover {
+    cursor: pointer;
+    background: $color-light;
+    color: $color-red;
+  }
+}

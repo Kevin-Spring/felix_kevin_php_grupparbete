@@ -7,12 +7,18 @@
     }
 ?>
 
-<h1>Welcome Admin!</h1>
+<body class="admin-page">
+    
 
-<ul>
-    <li><a href="index.php?page=adminCreatePost">Create Post</a></li>
-    <li><a href="index.php?page=adminPosts">Your posts</a></li>
-    <li><a href="index.php?page=adminAbout">About</a></li>
-    <li><a href="index.php?page=adminContact">Contact</a></li>
-    <li><a href="handlers/logout.php">Sign out</a></li>
-</ul>
+<h2 class="lg-heading">Welcome Admin!</h2>
+
+<div class="admin-container">
+    
+        <a class="btn-dark" href="index.php?page=adminCreatePost"><i class="fas fa-plus"></i>  Create Post</a>
+        <a class="btn-dark" href="index.php?page=adminPosts"><i class="fas fa-eye"></i>  Your posts</a>
+        <a class="btn-dark" href="index.php?page=adminAbout"><i class="fas fa-user"></i>  About</a>
+        <a class="btn-dark" href="index.php?page=adminContact"><i class="fas fa-envelope"></i>  Contact</<a>
+        <a class="btn" href="handlers/logout.php"><i class="fas fa-sign-out-alt"></i>  Sign out</a>
+
+</div>
+</body>
