@@ -1,0 +1,136 @@
+//index and general styling
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: set-text-color($color-black);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  height: 100%;
+  margin: 0;
+  background: $color-yellow;
+}
+
+// Headings
+h1,
+h2,
+h3 {
+  color: $color-dark;
+  margin: 0;
+  font-weight: 600;
+
+  // large heading
+  &.lg-heading {
+    font-size: 3rem;
+  }
+
+  // small heading
+  &.sm-heading {
+  }
+}
+
+// links
+a {
+  color: $color-black;
+  text-decoration: none;
+}
+
+.text-secondary {
+  color: $color-red;
+}
+
+main {
+  padding: 4rem;
+  //height: 100%;
+  min-height: calc(100vh - 60px);
+}
+
+// post styling
+.post-container {
+  max-height: 20vh;
+  background: $color-light;
+  color: $color-dark;
+  margin: 5% 10% 5% 10%;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.35);
+  //grid
+  display: grid;
+  grid-column-gap: 5%;
+  grid-row-gap: 5%;
+  grid-template-columns: 20% 50% 15%;
+  grid-template-rows: 30% 10% 50%;
+
+  // blog image
+  .post-img {
+    //black background if the img isn't wide enough
+    background: $color-black;
+    border-radius: 8px 0px 0px 8px;
+    //grid
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+
+    img {
+      max-width: 100%;
+      height: 100%;
+      border-radius: 8px 0px 0px 8px;
+      opacity: 0.9;
+    }
+  }
+  // blog header
+  h2 {
+    font-weight: 700;
+    font-size: 3rem;
+    color: $color-grey;
+    //grid
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  // blog post date
+  .post-date {
+    align-content: center;
+    //grid
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    h4 {
+      color: $color-red;
+      margin: 0;
+    }
+  }
+
+  // blog post content
+  .post-content {
+    // hide long text
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    //grid
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  // comment link
+  a {
+    margin-top: 20%;
+    text-align: center;
+    font-weight: 700;
+
+    //grid
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+}

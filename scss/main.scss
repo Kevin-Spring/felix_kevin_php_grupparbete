@@ -1,5 +1,14 @@
-body {
-  margin: 0;
-  background-color: red($color: #000000);
-  color: blue;
-}
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+
+@import "./pages/index";
+@import "./pages/login";
+@import "./pages/signUp";
+@import "./pages/post";
+@import "./pages/admin";
+@import "./pages/create-post";
+
+@import "./components/buttons";
+
+@import "./layout/menu";
+@import "./layout/header";

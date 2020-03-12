@@ -1,0 +1,15 @@
+.admin-page {
+  background: $color-black;
+
+  h2 {
+    text-align: center;
+    color: $color-yellow;
+  }
+  .admin-container {
+    margin: 2% 15% 10% 15%;
+
+    a {
+      margin-bottom: 2%;
+    }
+  }
+}

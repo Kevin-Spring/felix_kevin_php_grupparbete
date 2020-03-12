@@ -10,45 +10,55 @@ if(isset($_GET['action']) && $_GET['action'] == 'comment'){
 
     foreach($posts->getSinglePost() as $post){
         //echo "<input type='hidden' name='id' value=" . $post['id'] . ">";
-        echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-        echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-        echo "<div>" . "<h4>" . "Category: ". $post['Category']. "<h4>". "</div>";
+
+        echo '<div class="lg-post-container">';
         echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
+        echo  "<div>" . "<h2>" . $post['title'] . "</h2>" . "</div>";
+        echo "<div>" . "<h3>" . "<span>" . "Category: " . "</span>" . $post['Category']. "<h3>". "</div>";
+        echo  "<div>" . "<h4>" . "<span>" . "Date Posted: " . "</span>". $post['date_posted'] . "</h4>" . "</div>";
         echo  "<hr>";
         echo  "<div>" . $post['content'] . "</div>";
         echo "<hr>";
+        echo '</div>';
 
     }
+
+
+    
 
     //Fetch all comments related to post
-    echo "<h1>Comments:</h1>";
+    echo '<div class="comments-container">';
+    // Create comment
+    echo '<div class="create-comment-container">';
+    echo '<form action="handlers/handleComments.php" method="POST">';
+    echo "<input type='hidden' name='user_id' value=" . $_GET['userId'] . ">";
+    echo "<input type='hidden' name='post_id' value=" . $_GET['postId'] . ">";
+    echo '<input type="text" name="comment_title" id="" placeholder="Title">'; 
+    echo '<br>';
+    echo '<textarea name="comment_text" cols="30" rows="10" placeholder="Text">' . '</textarea>';
+    echo '<br>';
+    echo '<button class="btn-comment" name="COMMENT">Leave a comment!</button>';
+    echo '</form>';
+    echo '</div>';
+
+    echo "<h2>Comment Section:</h2>";
     $comments = new Comments($dbh);
     $comments->fetchComments();
-
+    // Display comments
     foreach($comments->getComments() as $comment){
-        echo "<h3>User: " . $comment['userName'] . "</h3>";
+        echo '<div class="user-comment-container">';
+        echo "<h3>" . $comment['userName'] . "<span>" . $comment['commentDate'] . "</span>" . "</h3>";
         //echo "<input type='hidden' name='id' value=" . $post['id'] . ">";
-        echo  "<div>" . "<h1>" . $comment['commentTitle'] . "</h1>" . "</div>";
-        echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $comment['commentDate'] . "</h4>" . "</div>";
-        echo  "<hr>";
+        //echo  "<div>" . "<h4>" . "<br>" . $comment['commentDate'] . "</h4>" . "</div>";
+       
+        echo  "<div>" . "<h4>" . $comment['commentTitle'] . "</h4>" . "</div>";
         echo  "<div>" . $comment['commentContent'] . "</div>";
-        echo "<hr>";
-
+        echo '</div>';
     }
+    echo '</div>';
 
 }
 
 ?>
 
-<h1>Leave a comment!!</h1>
 
-<form action="handlers/handleComments.php" method="POST">
-    <?php echo "<input type='hidden' name='user_id' value=" . $_GET['userId'] . ">";
-          echo "<input type='hidden' name='post_id' value=" . $_GET['postId'] . ">";
-    ?>
-    <input type="text" name="comment_title" id="" placeholder="Title"> 
-    <br>
-    <textarea name="comment_text" cols="30" rows="10" placeholder="Text"></textarea>
-    <br>
-    <button name="COMMENT">Comment!</button>
-</form>

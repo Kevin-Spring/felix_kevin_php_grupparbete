@@ -1,0 +1,81 @@
+.login-body {
+  background: $color-yellow;
+  // icon styling
+  i {
+    color: $color-lightgrey;
+    font-size: 2.5rem;
+    position: absolute;
+    margin-top: 1%;
+    margin-left: 2%;
+  }
+}
+#register {
+  position: absolute;
+  font-size: 1.5rem;
+  margin-left: 60%;
+  margin-top: -10%;
+  font-weight: 700;
+  text-decoration: underline;
+}
+#errormsg {
+  width: 100%;
+  position: absolute;
+  margin-top: 2%;
+  text-align: center;
+  color: $color-red;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  background: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 5px;
+
+  form {
+    width: 100%;
+    padding: 10% 15% 10% 15%;
+  }
+
+  .lg-heading {
+    color: $color-grey;
+    text-align: center;
+    padding: 1% 25% 5% 25%;
+    font-weight: 700;
+  }
+
+  .login-input {
+    padding-bottom: 3rem;
+
+    input {
+      color: $color-grey;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      width: 100%;
+      padding: 3% 0 3% 14%;
+      background: $color-light;
+      border: 3px solid $color-lightgrey;
+      border-radius: 8px;
+
+      &:focus {
+        outline: none;
+        background-color: white;
+      }
+    }
+  }
+  #back {
+    position: absolute;
+    font-size: 1.5rem;
+    margin-left: 40%;
+    margin-top: 2%;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
