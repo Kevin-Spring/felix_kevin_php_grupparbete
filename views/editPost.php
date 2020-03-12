@@ -32,7 +32,16 @@ if (isset($getAction) && $getAction == "edit") {
              </select>";
         echo "<br>";
         /* USER NEEDS TO UPLOAD FILE, ERROR MESSAGE OTHERWISE */
-        echo 'Required <input type="file" name="file"> ';
+        echo '<input type="file" name="file" accept="image/*" onchange="loadFile(event)" required>
+        <img id="output"/>
+    
+        <!-- SCRIPT FOR PREVIEW WINDOW OF UPLOADED IMAGE -->
+        <script>
+        var loadFile = function(event) {
+        var output = document.getElementById("output");
+        output.src = URL.createObjectURL(event.target.files[0]);
+        };
+        </script>';
         echo "<br>";
         echo  "<div>" . "<textarea name='text' cols=30 rows=10>" . $post['content'] . "</textarea>" . "</div>";
        echo "<script>
