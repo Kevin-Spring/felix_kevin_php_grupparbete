@@ -12,20 +12,27 @@ echo "    <h1>Welcome " . $_SESSION['userName'] . " to Millhouse Blog</h1>\n";
 echo "    <h2> Sunglasses Interior & Watches</h2>\n";
 echo "</header>\n";
 
- //Sorting options for the posts
- echo "Sort by: <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=ascending'>Ascending</a> | <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=descending'>Descending</a>";
- echo "<br>";
- echo "Sort by Category: <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=sunglasses'>Sunglasses</a> | <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=watches'>Watches</a> | 
- <a href='index.php?page=user&userId=". $_SESSION['id']. "&order=interior'>Interior</a> | <a href='index.php?page=user&userId=". $_SESSION['id']. "'>Show all</a>";
+ 
 
  //Search Form
  //In order for the url to stay the same with user-info, we need to direct user to new file
  //Otherwise the get method overwrites all url info
- echo "<form method='GET' action='handlers/handleSearch.php'>";
- echo "<input type='hidden' name='userId' value=" . $_SESSION['id'] . ">";
-  echo  "<input type='search' name='search_query'>";
-  echo  "<input type='submit' value='SÖK!'>";
- echo "</form>";
+ echo '<div class="categorySearch-container">';
+ echo "<form class='search' method='GET' action='handlers/handleSearch.php'>";
+ echo "<input class='searchBar' type='hidden' name='userId' value=" . $_SESSION['id'] . ">";
+ echo "<input class='searchBar' type='search' name='search_query' placeholder='Search..'>";
+ echo "<input class='search-btn' type='submit' value='SÖK!'>";
+ echo '</form>';
+
+ //Sorting options for the posts
+ //echo '<div class="category-container">';
+ echo '<div class="category" id="sunglasses">' . '<a href="index.php?page=user&userId='. $_SESSION["id"]. '&order=sunglasses">'.'<button>Sunglasses</button>'.'</a>'.'</div>'.'<div class="category" id="watches">'.'<a href="index.php?page=user&userId='. $_SESSION["id"]. '&order=watches">'.'<button>Watches</button>'.'</a>'.'</div>'.'
+ <div class="category" id="interior">'.'<a href="index.php?page=user&userId='. $_SESSION["id"]. '&order=interior">'.'<button>Interior</button>'.'</a>'.'</div>'.'<div class="category" id="all">'.'<a href="index.php?page=user&userId='. $_SESSION["id"]. '">'.'<button>All</button>'.'</a>'.'</div>';
+ //echo '</div>';
+
+ echo '<a class="date" href="index.php?page=user&userId='. $_SESSION["id"]. '&order=ascending"><i class="fas fa-sort-up"></i></a> <a class="date" href="index.php?page=user&userId='. $_SESSION["id"]. '&order=descending"><i class="fas fa-caret-down"></i></a>';
+// echo '<br>';
+echo '</div>';
 
  //Show all posts if no options are selected
  if(empty($_GET['order']) && empty($_GET['search_query'])){

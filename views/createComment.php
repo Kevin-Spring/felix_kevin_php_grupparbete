@@ -1,6 +1,6 @@
 <?php
 
-echo "<a href='index.php?page=user'>Back</a>";
+echo "<a class='back-btn' href='index.php?page=user'>Back</a>";
 
 if(isset($_GET['action']) && $_GET['action'] == 'comment'){
 
@@ -22,9 +22,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'comment'){
         echo '</div>';
 
     }
-
-
-    
 
     //Fetch all comments related to post
     echo '<div class="comments-container">';

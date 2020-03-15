@@ -3,7 +3,8 @@ include("includes/database_connection.php");
 
 ?>
 <body class="createPost-body">
-
+<br>
+<a class="back-btn" href="index.php?page=adminPage"><i class="fas fa-arrow-alt-circle-left"></i>Back</a>
 <div class="createPost-container">
 <h2 class="lg-heading">CREATE A NEW BLOG POST!</h2>
 <form action="handlers/handleCreatePost.php" method="POST" enctype="multipart/form-data">
@@ -53,6 +54,5 @@ include("includes/database_connection.php");
     <button class= "btn-comment" name="POST">Post</button>
     </form>
     </d>
-<a href="index.php?page=adminPage">Back</a>
 </div>
 </body>

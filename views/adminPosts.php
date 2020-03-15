@@ -1,9 +1,10 @@
 <?php 
 
-echo "<h1>Your posts!</h1>";
-echo "<a href='index.php?page=adminCreatePost'>Create another post!</a>";
 echo "<br>";
-echo "<a href='index.php?page=adminPage'>Back</a>";
+echo '<a class="back-btn" href="index.php?page=adminPage">' . '<i class="fas fa-arrow-alt-circle-left"></i>Back' . '</a>';
+echo "<br>";
+
+echo "<a href='index.php?page=adminCreatePost'>Create another post!</a>";
 echo "<br>";
 
  //Sorting options for the posts
@@ -19,6 +20,7 @@ echo "<br>";
   echo  "<input type='search' name='search_query'>";
   echo  "<input type='submit' value='SÖK!'>";
  echo "</form>";
+ echo '<h2 class="lg-heading">Your posts!</h2>';
 
 //Show all posts if no options are selected
 if(empty($_GET['order']) && empty($_GET['search_query'])){
@@ -31,9 +33,8 @@ if(empty($_GET['order']) && empty($_GET['search_query'])){
        echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
        echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
        echo  '<div class="post-content">' . $post['content'] . '</div>';
-       echo '<div class="edit-btn">'."<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>" . '</div>';
-        echo "<br>";
-        echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
+       echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+       echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
         echo '</div>';
        } 
    }
@@ -50,9 +51,9 @@ if (isset($_GET['search_query'])) {
   echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
   echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
   echo  '<div class="post-content">' . $post['content'] . '</div>';
-  echo  '<div class="edit-btn">'."<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>" . '</div>';
-  echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
-  echo '</div>';
+  echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+  echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
+   echo '</div>';
     }
 
 } 
@@ -66,19 +67,14 @@ if (isset($_GET['order'])) {
   $posts->fetchAll("asc");
  
   foreach($posts->getPosts() as $post){
-     echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-     echo  "<div>" . "<h4>" . "Category:" . "<br>" . $post['Category'] . "</h4>" . "</div>";
-     echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-     echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-     echo  "<hr>";
-     echo  "<div>" . $post['content'] . "</div>";
-  
-     echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
-      echo "<br>";
-      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
-     
-      
-      echo "<hr>";
+    echo  '<div class="post-container">';
+    echo  '<div class="post-img">' . '<img src="handlers/'. $post['img'] . '"> ' . '</div>';
+    echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
+    echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
+    echo  '<div class="post-content">' . $post['content'] . '</div>';
+    echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+    echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
+     echo '</div>';
      } 
   }
   //Continues to change query to fit sort by requirements
@@ -89,19 +85,14 @@ if (isset($_GET['order'])) {
   
  
    foreach($posts->getPosts() as $post){
-     echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-     echo  "<div>" . "<h4>" . "Category:" . "<br>" . $post['Category'] . "</h4>" . "</div>";
-     echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-     echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-     echo  "<hr>";
-     echo  "<div>" . $post['content'] . "</div>";
-  
-     echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
-      echo "<br>";
-      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
-     
-      
-      echo "<hr>";
+    echo  '<div class="post-container">';
+    echo  '<div class="post-img">' . '<img src="handlers/'. $post['img'] . '"> ' . '</div>';
+    echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
+    echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
+    echo  '<div class="post-content">' . $post['content'] . '</div>';
+    echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+    echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
+     echo '</div>';
      }
    } elseif(isset($_GET['order']) && $_GET['order'] == "watches"){
    //Order all posts by Category
@@ -110,19 +101,14 @@ if (isset($_GET['order'])) {
     
    
    foreach($posts->getPosts() as $post){
-     echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-     echo  "<div>" . "<h4>" . "Category:" . "<br>" . $post['Category'] . "</h4>" . "</div>";
-     echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-     echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-     echo  "<hr>";
-     echo  "<div>" . $post['content'] . "</div>";
-    
-     echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
-     echo "<br>";
-     echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
-    
-     
-     echo "<hr>";
+    echo  '<div class="post-container">';
+    echo  '<div class="post-img">' . '<img src="handlers/'. $post['img'] . '"> ' . '</div>';
+    echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
+    echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
+    echo  '<div class="post-content">' . $post['content'] . '</div>';
+    echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+    echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
+     echo '</div>';
      }
    } elseif(isset($_GET['order']) && $_GET['order'] == "interior"){
      //Order all posts by Category
@@ -131,19 +117,14 @@ if (isset($_GET['order'])) {
       
      
      foreach($posts->getPosts() as $post){
-       echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-       echo  "<div>" . "<h4>" . "Category:" . "<br>" . $post['Category'] . "</h4>" . "</div>";
-       echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-       echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-       echo  "<hr>";
-       echo  "<div>" . $post['content'] . "</div>";
-      
-       echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
-      echo "<br>";
-      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
-     
-      
-      echo "<hr>";
+      echo  '<div class="post-container">';
+      echo  '<div class="post-img">' . '<img src="handlers/'. $post['img'] . '"> ' . '</div>';
+      echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
+      echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
+      echo  '<div class="post-content">' . $post['content'] . '</div>';
+      echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+      echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
+       echo '</div>';
        }
      } elseif (isset($_GET['order']) && $_GET['order'] == "descending"){
        //Showing all posts with order descending
@@ -152,19 +133,14 @@ if (isset($_GET['order'])) {
       
      
        foreach($posts->getPosts() as $post){
-         echo  "<div>" . "<h1>" . $post['title'] . "</h1>" . "</div>";
-         echo  "<div>" . "<h4>" . "Category:" . "<br>" . $post['Category'] . "</h4>" . "</div>";
-         echo  "<div>" . "<h4>" . "Posted:" . "<br>" . $post['date_posted'] . "</h4>" . "</div>";
-         echo  "<div>" . "<br>" . "<img src='handlers/". $post['img'] . "'> " . "</div>";
-         echo  "<hr>";
-         echo  "<div>" . $post['content'] . "</div>";
-      
-         echo "<a href='index.php?page=edit&action=edit&postId=" . $post['id'] . "'>Edit post!</a>";
-      echo "<br>";
-      echo "<a href='index.php?page=delete&action=delete&postId=" . $post['id'] . "&imgId=" . $post['img'] . "'>Delete!</a>";
-     
-      
-      echo "<hr>";
+                echo  '<div class="post-container">';
+       echo  '<div class="post-img">' . '<img src="handlers/'. $post['img'] . '"> ' . '</div>';
+       echo  '<div class="post-title">' . '<h2 class="sm-heading">' . $post['title'] . '</h2>' . '</div>';
+       echo  '<div class="post-date">' . '<h4>' . 'Posted: ' . $post['date_posted'] . '</h4>' . '</div>';
+       echo  '<div class="post-content">' . $post['content'] . '</div>';
+       echo '<div class="edit-btn">' . '<a class="edit-btn" href="index.php?page=edit&action=edit&postId=' . $post['id'] . '">' . '<i class="fas fa-edit"></i>' . '</a>' . '</div>';
+       echo '<div class="del-btn">' . '<a class="edit-btn" href="index.php?page=delete&action=delete&postId=' . $post['id'] . "&imgId=" . $post['img'] . '">' . '<i class="fas fa-trash"></i>' . '</a>' . '</div>';
+        echo '</div>';
          }
        } 
   }

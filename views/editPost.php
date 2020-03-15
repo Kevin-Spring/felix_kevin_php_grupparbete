@@ -1,5 +1,4 @@
 <?php
-
     @session_start();
     if(@$_SESSION['role'] != "admin"){
     echo "<h2>Access denied dude, nice try..</h2>";
@@ -7,17 +6,19 @@
     }
 
 $getAction = $_GET['action'];
-
-
 //To edit posts
 if (isset($getAction) && $getAction == "edit") {
     $getId = $_GET['postId'];
-    echo "<a href='index.php?page=delete&action=delete&postId=" . $getId . "'>Delete this post!</a>";
+    
+    echo "<a class='back-btn' href='index.php?page=adminPosts'>Back</a>";
+
     //Fetch the post with corresponding id
     $posts = new singlePost($dbh);
     $posts->fetchSinglePost();
     //Put the old value inside new input fields to edit the text
     foreach($posts->getSinglePost() as $post){
+        echo '<div class="lg-post-container">';
+        echo '<h3>Header</h3>';
         echo "<form action='handlers/handleCreatePost.php?editPost=true' method='POST' enctype='multipart/form-data'>";
         echo "<input type='hidden' name='id' value=" . $getId . ">";
         echo  "<div>" . "<input type='text' name='title' value=" . $post['title'] . "></div>"; 
@@ -59,10 +60,12 @@ if (isset($getAction) && $getAction == "edit") {
       </script>";
         echo "<hr>";
 
-        echo "<button name='update'>Update!</button>";
+        echo "<button class='btn-comment' name='update'>Update!</button>";
         echo "</form>";
 
-        echo "<a href='index.php?page=adminPosts'>Back</a>";
+        echo "<a href='index.php?page=delete&action=delete&postId=" . $getId . "'>Delete this post!</a>";
+
+        '</div>';
     }  
 
     $getId = $_GET['postId'];
@@ -84,5 +87,4 @@ if (isset($getAction) && $getAction == "edit") {
     echo  "<button type='submit'>Delete this comment</button>";
     echo "</form>";
 }
-
 }
